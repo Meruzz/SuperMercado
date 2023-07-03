@@ -10,7 +10,7 @@ include_once "head.php";
 
 ?>
 <br>
-<a href="nuevoProducto.php" type="button" class="btn btn-primary">Nuevo Producto</a>
+<a href="pronuevo.php" type="button" class="btn btn-primary">Nuevo Producto</a>
 <br>
 <br>
 <table class="table table-striped">
