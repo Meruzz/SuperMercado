@@ -131,4 +131,57 @@ function insertProducto(
     return false; //OPCIONAL
   }
 }
+
+
+// EJECUTA COMANDOS SQL
+function updateProducto(
+  $id_prod,
+  $prod_desc,
+  $prod_precio_c,
+  $prod_precio_v,
+  $prod_stock,
+  $prod_fecha_elab,
+  $prod_nivel_azucar,
+  $prod_aplica_iva,
+  $prod_especificacion,
+  $prod_imagen,
+  $mar_id,
+  $cat_id
+) {
+  try {
+      // Consulta SQL para actualizar un producto en la base de datos
+      $sql = "UPDATE tab_productos SET
+          prod_desc = :pprod_desc,
+          prod_precio_c = :pprod_precio_c,
+          prod_precio_v = :pprod_precio_v,
+          prod_stock = :pprod_stock,
+          prod_fecha_elab = :pprod_fecha_elab,
+          prod_nivel_azucar = :pprod_nivel_azucar,
+          prod_aplica_iva = :pprod_aplica_iva,
+          prod_especificacion = :pprod_especificacion,
+          prod_imagen = :pprod_imagen,
+          mar_id = :pmar_id,
+          cat_id = :pcat_id
+          WHERE id_prod = :pid_prod";
+      $conexion = conectaBaseDatos();
+      $stmt = $conexion->prepare($sql);
+      $stmt->bindParam(":pprod_desc", $prod_desc);
+      $stmt->bindParam(":pprod_precio_c", $prod_precio_c);
+      $stmt->bindParam(":pprod_precio_v", $prod_precio_v);
+      $stmt->bindParam(":pprod_stock", $prod_stock);
+      $stmt->bindParam(":pprod_fecha_elab", $prod_fecha_elab);
+      $stmt->bindParam(":pprod_nivel_azucar", $prod_nivel_azucar);
+      $stmt->bindParam(":pprod_aplica_iva", $prod_aplica_iva);
+      $stmt->bindParam(":pprod_especificacion", $prod_especificacion);
+      $stmt->bindParam(":pprod_imagen", $prod_imagen);
+      $stmt->bindParam(":pmar_id", $mar_id);
+      $stmt->bindParam(":pcat_id", $cat_id);
+      $stmt->bindParam(":pid_prod", $id_prod);
+      $stmt->execute();
+      return true; //OPCIONAL
+  } catch (PDOException $e) {
+      echo $e->getMessage();
+      return false; //OPCIONAL
+  }
+}
 ?>
