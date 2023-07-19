@@ -26,7 +26,33 @@ if (isset($_POST['btnGuardar'])) {
     }
 
     $prod_especificacion = $_POST['txtEspecifi2']; // Campo Especificaciones
-    $prod_imagen = "sinImagen.jpg"; // Valor predeterminado para el nombre de la imagen
+
+    // Manejo de la carga de la imagen
+    $imgFile = $_FILES['imgProducto']['name'];
+    $tmp_dir = $_FILES['imgProducto']['tmp_name'];
+    $imgSize = $_FILES['imgProducto']['size'];
+    $upload_dir = '../img/'; // Reemplaza con la ruta correcta en tu servidor
+
+    if (!empty($imgFile)) {
+        $imgExt = strtolower(pathinfo($imgFile, PATHINFO_EXTENSION));
+        $numero = rand(1000, 9999);
+        $prod_imagen = $numero . "." . $imgExt;
+
+        $valid_extensions = array('jpeg', 'jpg', 'gif');
+
+        if (in_array($imgExt, $valid_extensions)) {
+            if ($imgSize < 1000000) {
+                move_uploaded_file($tmp_dir, $upload_dir . $prod_imagen);
+            } else {
+                $error[] = "El archivo es demasiado grande, debe ser menor a 1MB.";
+            }
+        } else {
+            $error[] = "Extensión de archivo no permitida. Por favor, sube una imagen en formato JPEG, JPG o GIF.";
+        }
+    } else {
+        $prod_imagen = "sinImagen.jpg";
+    }
+
     $mar_id = $_POST['cboMarcas']; // Campo Marcas
     $cat_id = $_POST['cboCategorias']; // Campo Categorías
 
@@ -63,7 +89,7 @@ if (isset($_POST['btnGuardar'])) {
                 'error'
             )
         </script>
-<?php
+    <?php
     }
 }
 ?>
@@ -71,7 +97,7 @@ if (isset($_POST['btnGuardar'])) {
 <h3>Nuevo</h3>
 
 <div class="container-fluid">
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-6">
                 <div class="card card-primary">

@@ -3,10 +3,7 @@ include_once "head.php";
 include_once "../funciones/funcionesMarcas.php";
 include_once "../funciones/funcionesCategorias.php";
 include_once "../funciones/funcionesProducto.php";
-?>
-<!-- Agregar la librería de Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<?php
+
 $id_prod = isset($_GET['id_prod']) ? $_GET['id_prod'] : '';
 
 echo "Código Recibido: " . $id_prod;
@@ -100,43 +97,42 @@ if (isset($_POST['btnGuardar'])) {
                     <div class="card-body">
                         <label for="txtCodigo">Código:</label>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-hashtag"></i></span>
+                            <span class="input-group-text" id="basic-addon1">#</span>
                             <input type="text" name="txtCodigo" id="txtCodigo" class="form-control" aria-describedby="basic-addon1" value="<?php echo $id_prod; ?>" <?php echo !empty($id_prod) ? 'readonly' : ''; ?>>
                         </div>
 
                         <label for="txtDesc">Descripción:</label>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-pencil-alt"></i></span>
+                            <span class="input-group-text" id="basic-addon2">#</span>
                             <input type="text" name="txtDesc" id="txtDesc" class="form-control" aria-describedby="basic-addon2" value="<?php echo $prod_desc; ?>">
                         </div>
 
                         <label for="txtPrecio">Precio Costo:</label>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon3"><i class="fas fa-dollar-sign"></i></span>
+                            <span class="input-group-text" id="basic-addon3">$</span>
                             <input type="number" name="txtPrecio" id="txtPrecio" class="form-control" aria-describedby="basic-addon3" value="<?php echo $prod_precio_c; ?>">
                         </div>
 
                         <label for="txtPrecioV">Precio Venta:</label>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon4"><i class="fas fa-dollar-sign"></i></span>
+                            <span class="input-group-text" id="basic-addon4">$</span>
                             <input type="number" name="txtPrecioV" id="txtPrecioV" class="form-control" aria-describedby="basic-addon4" value="<?php echo $prod_precio_v; ?>">
                         </div>
 
                         <label for="txtStock">Stock:</label>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon5"><i class="fas fa-hashtag"></i></span>
+                            <span class="input-group-text" id="basic-addon5">#</span>
                             <input type="number" name="txtStock" id="txtStock" class="form-control" aria-describedby="basic-addon5" value="<?php echo $prod_stock; ?>">
                         </div>
 
                         <label for="txtFechaElab">Fecha Elaboración:</label>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon6"><i class="fas fa-calendar-alt"></i></span>
+                            <span class="input-group-text" id="basic-addon6">#</span>
                             <input type="date" name="txtFechaElab" id="txtFechaElab" class="form-control" aria-describedby="basic-addon6" value="<?php echo $prod_fecha_elab; ?>">
                         </div>
 
                         <label for="cboNivelAzucar">Nivel de Azúcar:</label>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon7"><i class="fas fa-sort-amount-up"></i></span>
                             <select name="cboNivelAzucar" id="cboNivelAzucar" class="form-select" required>
                                 <option value="A" <?php echo $prod_nivel_azucar == 'A' ? 'selected' : ''; ?>>Alto</option>
                                 <option value="M" <?php echo $prod_nivel_azucar == 'M' ? 'selected' : ''; ?>>Medio</option>
@@ -162,7 +158,7 @@ if (isset($_POST['btnGuardar'])) {
                         <label for="txtEspecifi2" mt-2>Especificaciones:</label>
                         <br>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon8"><i class="fas fa-comment"></i></span>
+                            <span class="input-group-text" id="basic-addon8">#</span>
                             <textarea name="txtEspecifi2" id="txtEspecifi2" class="form-control" cols="10" rows="1"><?php echo $prod_especificacion; ?></textarea>
                         </div>
 
@@ -224,6 +220,5 @@ if (isset($_POST['btnGuardar'])) {
         </div>
     </form>
 </div>
-<!-- Agregar la librería de Font Awesome (versión JS) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
 <?php include_once "footer.php"; ?>
